@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bionic Reading PT-BR | Cognitive Ingestion</title>
     <meta name="description" content="Conversor de Leitura Biônica para Português Brasileiro. Otimizando o pipeline de leitura para o cérebro humano.">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* ============================================
+           VARIÁVEIS DE COR - TEMA CYBER-BRUTALISTA
+           ============================================ */
         :root {
-            --cyber-neon: #00FF41;
-            --cyber-pink: #FF0080;
-            --cyber-cyan: #00FFFF;
-            --bg-1: #0A0A0A;
-            --bg-2: #0D1117;
-            --text-light: #FFFFFF;
-            --text-muted: rgba(255, 255, 255, 0.7);
+            --bg: #000000;
+            --text: #ffffff;
+            --muted: #888888;
+            --border: #333333;
+            --focus: #00ff00;
+            --button: #00ff00;
+            --buttonText: #000000;
         }
 
         * {
@@ -24,272 +26,296 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg-1);
-            color: var(--text-light);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
-        }
-
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        header {
             padding: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
+        /* ============================================
+           HEADER E NAVEGAÇÃO
+           ============================================ */
         .back-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: var(--cyber-neon);
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.2s;
+            color: var(--focus);
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            transition: opacity 0.2s;
         }
 
         .back-link:hover {
-            color: var(--cyber-cyan);
-            transform: translateX(-5px);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
+            opacity: 0.8;
         }
 
         h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
-            color: var(--cyber-neon);
+            color: var(--focus);
         }
 
         .subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-muted);
+            color: var(--muted);
             font-size: 0.875rem;
             margin-bottom: 2rem;
         }
 
-        .tagline {
-            background: var(--bg-2);
-            border-left: 3px solid var(--cyber-pink);
+        .description {
+            background: rgba(0, 255, 0, 0.05);
+            border-left: 3px solid var(--focus);
             padding: 1rem 1.5rem;
             margin-bottom: 2rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            color: var(--muted);
         }
 
+        /* ============================================
+           SEÇÃO DE INPUT
+           ============================================ */
         .input-section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         label {
             display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: var(--cyber-cyan);
-            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
             text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
         }
 
         textarea {
             width: 100%;
-            min-height: 200px;
-            background: var(--bg-2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-light);
+            min-height: 180px;
             padding: 1rem;
-            font-family: 'Space Grotesk', sans-serif;
+            background: #0a0a0a;
+            border: 1px solid var(--border);
+            color: var(--text);
             font-size: 1rem;
+            line-height: 1.6;
             resize: vertical;
-            transition: border-color 0.2s;
+            font-family: inherit;
         }
 
         textarea:focus {
             outline: none;
-            border-color: var(--cyber-neon);
+            border-color: var(--focus);
         }
 
+        /* ============================================
+           BOTÕES DE CONTROLE
+           ============================================ */
         .controls {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
-            flex-wrap: wrap;
         }
 
         button {
-            font-family: 'JetBrains Mono', monospace;
+            padding: 0.875rem 1.5rem;
+            background: var(--button);
+            color: var(--buttonText);
+            border: none;
             font-size: 0.875rem;
-            padding: 1rem 2rem;
-            border: 2px solid var(--cyber-neon);
-            background: transparent;
-            color: var(--cyber-neon);
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: opacity 0.2s;
         }
 
         button:hover {
-            background: var(--cyber-neon);
-            color: var(--bg-1);
+            opacity: 0.9;
         }
 
         button.secondary {
-            border-color: var(--cyber-pink);
-            color: var(--cyber-pink);
+            background: transparent;
+            color: var(--focus);
+            border: 2px solid var(--focus);
         }
 
-        button.secondary:hover {
-            background: var(--cyber-pink);
-            color: var(--bg-1);
-        }
-
+        /* ============================================
+           SEÇÃO DE OUTPUT
+           ============================================ */
         .output-section {
-            background: var(--bg-2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            min-height: 200px;
+            background: #0a0a0a;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            min-height: 150px;
         }
 
-        .output-section h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: var(--cyber-cyan);
-            margin-bottom: 1rem;
+        .output-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted);
             text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
         }
 
         #output {
             font-size: 1.125rem;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
-        #output b {
-            color: var(--cyber-neon);
-            font-weight: 700;
+        /* ============================================
+           CLASSES BIONIC - NÃO ALTERAR
+           ============================================ */
+        .bionic-bold {
+            font-weight: 800;
+            color: var(--focus);
         }
 
+        .bionic-bold-heavy {
+            font-weight: 900;
+            color: var(--text);
+        }
+
+        .bionic-bold-medium {
+            font-weight: 600;
+            color: var(--focus);
+        }
+
+        /* ============================================
+           INFO E FOOTER
+           ============================================ */
         .info {
             margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(0, 255, 65, 0.05);
-            border: 1px solid rgba(0, 255, 65, 0.2);
+            padding: 1.25rem;
+            background: rgba(0, 255, 0, 0.03);
+            border: 1px solid var(--border);
         }
 
         .info h3 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: var(--cyber-neon);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--focus);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
         }
 
         .info p {
             font-size: 0.875rem;
-            color: var(--text-muted);
+            color: var(--muted);
         }
 
         footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
         }
 
         footer p {
-            font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--muted);
         }
     </style>
 </head>
 <body>
-    <div class="noise-overlay"></div>
+    <a href="index.html" class="back-link">← Voltar ao Portfólio</a>
     
-    <header>
-        <a href="./index.html#projects" class="back-link">← Voltar ao Portfólio</a>
-    </header>
+    <h1>Bionic Reading PT-BR</h1>
+    <p class="subtitle">Otimização cognitiva para leitura digital</p>
+    
+    <div class="description">
+        Ferramenta de acessibilidade que aplica <strong>Leitura Biônica</strong> em textos em português, 
+        destacando partes das palavras para guiar o olhar do leitor. Ideal para pessoas com 
+        <strong>TDAH</strong> e <strong>Dislexia</strong>.
+    </div>
 
-    <div class="container">
-        <h1>Bionic Reading / Cognitive Ingestion</h1>
-        <p class="subtitle">Pipeline de otimização cognitiva para PT-BR</p>
-        
-        <div class="tagline">
-            // Se otimizamos pipelines para máquinas, devemos otimizar a ingestão de dados para humanos.
-            // Aumente o foco visual e a velocidade de leitura com formatação biônica.
-        </div>
+    <div class="input-section">
+        <label for="input">Texto para converter</label>
+        <textarea id="input" placeholder="Cole aqui seu texto em português..."></textarea>
+    </div>
 
-        <div class="input-section">
-            <label for="input-text">Input: Texto para processar</label>
-            <textarea id="input-text" placeholder="Cole aqui o texto em português que você quer otimizar para leitura biônica...">A leitura biônica é uma técnica que destaca partes das palavras para guiar o olhar do leitor. Isso permite que o cérebro processe o texto mais rapidamente, mantendo a compreensão. Ideal para pessoas com TDAH ou quem precisa consumir grandes volumes de informação.</textarea>
-        </div>
+    <div class="controls">
+        <button onclick="convertToBionicReading()">Converter para Bionic</button>
+        <button class="secondary" onclick="clearAll()">Limpar</button>
+    </div>
 
-        <div class="controls">
-            <button onclick="convertToBionic()">Converter para Bionic</button>
-            <button class="secondary" onclick="clearText()">Limpar</button>
-        </div>
+    <div class="output-section">
+        <div class="output-label">Texto convertido</div>
+        <div id="output"></div>
+    </div>
 
-        <div class="output-section">
-            <h2>Output: Texto Processado</h2>
-            <div id="output">Clique em "Converter para Bionic" para ver o resultado...</div>
-        </div>
-
-        <div class="info">
-            <h3>// Como funciona o algoritmo</h3>
-            <p>O algoritmo aplica <b>negrito</b> nas primeiras letras de cada palavra (geralmente 40-50%), criando pontos de ancoragem visual. O cérebro humano consegue prever o resto da palavra, acelerando a leitura em até 25% sem perda de compreensão.</p>
-        </div>
+    <div class="info">
+        <h3>Como funciona</h3>
+        <p>O algoritmo aplica <span class="bionic-bold">negrito</span> nas primeiras letras de cada palavra 
+        (aproximadamente 40-50%), criando <span class="bionic-bold">pontos de ancoragem visual</span>. 
+        O cérebro humano consegue prever o resto da palavra, acelerando a leitura sem perda de compreensão.</p>
     </div>
 
     <footer>
-        <p>Desenvolvido por Kauan Monteiro | Data Engineer & Cognitive Optimization</p>
+        <p>Desenvolvido por Kauan Monteiro | Data Engineer & Accessibility Advocate</p>
     </footer>
 
     <script>
-        function convertToBionic() {
-            const input = document.getElementById('input-text').value;
+        /**
+         * FUNÇÃO PRINCIPAL - NÃO ALTERAR A LÓGICA
+         * Converte texto para formato Bionic Reading
+         */
+        function convertToBionicReading() {
+            const input = document.getElementById('input').value;
+            
             if (!input.trim()) {
-                alert('Por favor, insira um texto para converter.');
+                document.getElementById('output').innerHTML = '<span style="color: var(--muted);">Digite algum texto para converter...</span>';
                 return;
             }
 
-            const words = input.split(/(\s+)/);
-            const converted = words.map(word => {
-                if (word.trim().length === 0) return word;
-                if (word.length <= 3) return word;
+            // Regex para separar palavras mantendo espaços e pontuação
+            const tokens = input.split(/([\s\n\r]+|[.,;:!?()[\]{}"'\\-]+)/);
+            
+            const converted = tokens.map(token => {
+                // Se for espaço, newline ou pontuação, retorna como está
+                if (!token.trim() || /^[\s\n\r]+$/.test(token) || /^[.,;:!?()[\]{}"'\\-]+$/.test(token)) {
+                    return token;
+                }
                 
-                const boldLength = Math.ceil(word.length * 0.5);
-                const boldPart = word.substring(0, boldLength);
-                const restPart = word.substring(boldLength);
+                // Se for palavra muito curta (1-2 letras), não aplica negrito
+                if (token.length <= 2) {
+                    return token;
+                }
                 
-                return `<b>${boldPart}</b>${restPart}`;
+                // Calcula o ponto de corte (aproximadamente metade da palavra)
+                const cutPoint = Math.ceil(token.length * 0.5);
+                
+                const boldPart = token.substring(0, cutPoint);
+                const restPart = token.substring(cutPoint);
+                
+                // Aplica classe bionic-bold com span
+                return `<span class="bionic-bold">${boldPart}</span>${restPart}`;
             });
 
             document.getElementById('output').innerHTML = converted.join('');
         }
 
-        function clearText() {
-            document.getElementById('input-text').value = '';
-            document.getElementById('output').innerHTML = 'Clique em "Converter para Bionic" para ver o resultado...';
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').innerHTML = '';
         }
 
-        // Converter automaticamente ao carregar
-        window.onload = function() {
-            convertToBionic();
-        };
+        // Auto-converter ao colar texto
+        document.getElementById('input').addEventListener('paste', function() {
+            setTimeout(convertToBionicReading, 100);
+        });
+
+        // Converter em tempo real ao digitar (com delay)
+        let typingTimer;
+        document.getElementById('input').addEventListener('input', function() {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(convertToBionicReading, 500);
+        });
     </script>
 </body>
 </html>
