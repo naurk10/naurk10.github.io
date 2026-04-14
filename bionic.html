@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bionic Reading PT-BR | Cognitive Ingestion</title>
+    <meta name="description" content="Conversor de Leitura Biônica para Português Brasileiro. Otimizando o pipeline de leitura para o cérebro humano.">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyber-neon: #00FF41;
+            --cyber-pink: #FF0080;
+            --cyber-cyan: #00FFFF;
+            --bg-1: #0A0A0A;
+            --bg-2: #0D1117;
+            --text-light: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg-1);
+            color: var(--text-light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-link {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--cyber-neon);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--cyber-cyan);
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--cyber-neon);
+        }
+
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+        }
+
+        .tagline {
+            background: var(--bg-2);
+            border-left: 3px solid var(--cyber-pink);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .input-section {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--cyber-cyan);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            background: var(--bg-2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            padding: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--cyber-neon);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            padding: 1rem 2rem;
+            border: 2px solid var(--cyber-neon);
+            background: transparent;
+            color: var(--cyber-neon);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: var(--cyber-neon);
+            color: var(--bg-1);
+        }
+
+        button.secondary {
+            border-color: var(--cyber-pink);
+            color: var(--cyber-pink);
+        }
+
+        button.secondary:hover {
+            background: var(--cyber-pink);
+            color: var(--bg-1);
+        }
+
+        .output-section {
+            background: var(--bg-2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            min-height: 200px;
+        }
+
+        .output-section h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--cyber-cyan);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        #output {
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        #output b {
+            color: var(--cyber-neon);
+            font-weight: 700;
+        }
+
+        .info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+        }
+
+        .info h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--cyber-neon);
+            margin-bottom: 0.5rem;
+        }
+
+        .info p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header>
+        <a href="./index.html#projects" class="back-link">← Voltar ao Portfólio</a>
+    </header>
+
+    <div class="container">
+        <h1>Bionic Reading / Cognitive Ingestion</h1>
+        <p class="subtitle">Pipeline de otimização cognitiva para PT-BR</p>
+        
+        <div class="tagline">
+            // Se otimizamos pipelines para máquinas, devemos otimizar a ingestão de dados para humanos.
+            // Aumente o foco visual e a velocidade de leitura com formatação biônica.
+        </div>
+
+        <div class="input-section">
+            <label for="input-text">Input: Texto para processar</label>
+            <textarea id="input-text" placeholder="Cole aqui o texto em português que você quer otimizar para leitura biônica...">A leitura biônica é uma técnica que destaca partes das palavras para guiar o olhar do leitor. Isso permite que o cérebro processe o texto mais rapidamente, mantendo a compreensão. Ideal para pessoas com TDAH ou quem precisa consumir grandes volumes de informação.</textarea>
+        </div>
+
+        <div class="controls">
+            <button onclick="convertToBionic()">Converter para Bionic</button>
+            <button class="secondary" onclick="clearText()">Limpar</button>
+        </div>
+
+        <div class="output-section">
+            <h2>Output: Texto Processado</h2>
+            <div id="output">Clique em "Converter para Bionic" para ver o resultado...</div>
+        </div>
+
+        <div class="info">
+            <h3>// Como funciona o algoritmo</h3>
+            <p>O algoritmo aplica <b>negrito</b> nas primeiras letras de cada palavra (geralmente 40-50%), criando pontos de ancoragem visual. O cérebro humano consegue prever o resto da palavra, acelerando a leitura em até 25% sem perda de compreensão.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Desenvolvido por Kauan Monteiro | Data Engineer & Cognitive Optimization</p>
+    </footer>
+
+    <script>
+        function convertToBionic() {
+            const input = document.getElementById('input-text').value;
+            if (!input.trim()) {
+                alert('Por favor, insira um texto para converter.');
+                return;
+            }
+
+            const words = input.split(/(\s+)/);
+            const converted = words.map(word => {
+                if (word.trim().length === 0) return word;
+                if (word.length <= 3) return word;
+                
+                const boldLength = Math.ceil(word.length * 0.5);
+                const boldPart = word.substring(0, boldLength);
+                const restPart = word.substring(boldLength);
+                
+                return `<b>${boldPart}</b>${restPart}`;
+            });
+
+            document.getElementById('output').innerHTML = converted.join('');
+        }
+
+        function clearText() {
+            document.getElementById('input-text').value = '';
+            document.getElementById('output').innerHTML = 'Clique em "Converter para Bionic" para ver o resultado...';
+        }
+
+        // Converter automaticamente ao carregar
+        window.onload = function() {
+            convertToBionic();
+        };
+    </script>
+</body>
+</html>
