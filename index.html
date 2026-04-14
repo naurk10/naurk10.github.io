@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kauan Monteiro | Data Engineer & Cloud Architect</title>
+    <meta name="description" content="Data Engineer | Mathematician (IFSP) | Cloud Architect. Transformando fluxos de dados complexos em decisões estratégicas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Efeitos Cyber-Brutalistas -->
+    <div class="noise-overlay"></div>
+    <div class="scanlines"></div>
+    
+    <!-- Cursor Personalizado -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-outline"></div>
+    </div>
+
+    <!-- Navegação Overlay -->
+    <nav class="nav-overlay" id="navOverlay">
+        <div class="nav-content">
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link" data-text="INÍCIO">INÍCIO</a></li>
+                <li><a href="#about" class="nav-link" data-text="SOBRE">SOBRE</a></li>
+                <li><a href="#linguistic" class="nav-link" data-text="IDIOMAS">IDIOMAS</a></li>
+                <li><a href="#projects" class="nav-link" data-text="PROJETOS">PROJETOS</a></li>
+                <li><a href="#contact" class="nav-link" data-text="CONTATO">CONTATO</a></li>
+            </ul>
+            <div class="nav-footer">
+                <p>AEVUM — ERA</p>
+                <p>O que permanece depois que o tempo passa</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Botão Menu -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title glitch-text" data-text="KAUAN MONTEIRO">
+                <span class="title-line">KAUAN</span>
+                <span class="title-line title-line--italic">MONTEIRO</span>
+            </h1>
+            <p class="hero-subtitle terminal-cursor">
+                Data Engineer | Mathematician (IFSP) | Cloud Architect<br>
+                <span class="highlight">Unindo a abstração da Matemática com a engenharia de Banco de Dados. Especialista em transformar fluxos de dados complexos em decisões estratégicas através de pipelines robustos na AWS, GCP e Azure.</span>
+            </p>
+            <div class="hero-scroll">
+                <span class="scroll-text">[SCROLL_TO_EXPLORE]</span>
+                <div class="scroll-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M19 12l-7 7-7-7"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee de Tecnologias -->
+    <div class="marquee-cyber">
+        <div class="marquee-content-cyber">
+            <span>Data Engineer</span>
+            <span class="divider">//</span>
+            <span>Mathematician</span>
+            <span class="divider">//</span>
+            <span>Python</span>
+            <span class="divider">//</span>
+            <span>Java</span>
+            <span class="divider">//</span>
+            <span>SQL</span>
+            <span class="divider">//</span>
+            <span>GCP</span>
+            <span class="divider">//</span>
+            <span>AWS</span>
+            <span class="divider">//</span>
+            <span>Azure</span>
+            <span class="divider">//</span>
+            <span>ETL</span>
+            <span class="divider">//</span>
+            <span>Data Lakes</span>
+            <span class="divider">//</span>
+            <span>Cloud Architecture</span>
+            <span class="divider">//</span>
+            <span>Data Engineer</span>
+            <span class="divider">//</span>
+            <span>Mathematician</span>
+            <span class="divider">//</span>
+            <span>Python</span>
+            <span class="divider">//</span>
+            <span>Java</span>
+            <span class="divider">//</span>
+            <span>SQL</span>
+            <span class="divider">//</span>
+            <span>GCP</span>
+            <span class="divider">//</span>
+            <span>AWS</span>
+            <span class="divider">//</span>
+            <span>Azure</span>
+            <span class="divider">//</span>
+            <span>ETL</span>
+            <span class="divider">//</span>
+            <span>Data Lakes</span>
+            <span class="divider">//</span>
+            <span>Cloud Architecture</span>
+            <span class="divider">//</span>
+        </div>
+    </div>
+
+    <!-- About / Manifesto Section -->
+    <section class="about" id="about">
+        <div class="about-bg"></div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="about-title">
+                    <span class="title-word mono">AEVUM</span>
+                    <span class="title-word">— ERA</span>
+                </h2>
+                
+                <div class="manifesto-block">
+                    <p class="manifesto-text">
+                        <span class="highlight">aevum</span> — do latim, era. O que permanece depois que o tempo passa.<br><br>
+                        A ideia é simples: <span class="highlight">resolver problemas reais com código que funciona</span>. 
+                        Sem abstrações desnecessárias, sem teatro de startup. 
+                        Construindo soluções de engenharia de dados fundamentadas em rigor matemático e execução impecável. 
+                        Se está aqui, é porque eu sentei e escrevi.
+                    </p>
+                </div>
+
+                <div class="punchline">
+                    <span class="mono">Rigor Matemático.</span><br>
+                    <span class="italic">Execução Técnica.</span><br>
+                    <span>Decisões Estratégicas.</span>
+                </div>
+
+                <!-- Skills -->
+                <div class="skills-section">
+                    <h3 class="skills-title">TECH STACK</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">ETL</span>
+                        <span class="skill-tag">Data Lakes</span>
+                        <span class="skill-tag">Mathematics</span>
+                        <span class="skill-tag">Cloud Architecture</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Pipeline</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Linguistic Stack Section -->
+    <section class="linguistic-section" id="linguistic">
+        <div class="section-header">
+            <h2 class="section-title glitch-text" data-text="LINGUISTIC_STACK">LINGUISTIC_STACK</h2>
+            <p class="section-subtitle">Comunicação técnica e humana em múltiplas camadas</p>
+        </div>
+        
+        <div class="linguistic-grid">
+            <!-- Inglês -->
+            <div class="linguistic-card">
+                <div class="lang-header">
+                    <span class="lang-code">en_US</span>
+                    <span class="lang-name">Inglês</span>
+                </div>
+                <div class="lang-level">
+                    <div class="level-bar">
+                        <div class="level-fill" style="width: 95%;"></div>
+                    </div>
+                    <span class="level-text">Fluente // 95%</span>
+                </div>
+                <p class="lang-desc">Documentação técnica, comunicação com stakeholders internacionais, leitura de papers acadêmicos.</p>
+            </div>
+
+            <!-- Espanhol -->
+            <div class="linguistic-card">
+                <div class="lang-header">
+                    <span class="lang-code">es_ES</span>
+                    <span class="lang-name">Espanhol</span>
+                </div>
+                <div class="lang-level">
+                    <div class="level-bar">
+                        <div class="level-fill" style="width: 85%;"></div>
+                    </div>
+                    <span class="level-text">Avançado // 85%</span>
+                </div>
+                <p class="lang-desc">Comunicação profissional, leitura técnica, colaboração com times LATAM.</p>
+            </div>
+
+            <!-- Japonês -->
+            <div class="linguistic-card">
+                <div class="lang-header">
+                    <span class="lang-code">ja_JP</span>
+                    <span class="lang-name">Japonês</span>
+                </div>
+                <div class="lang-level">
+                    <div class="level-bar">
+                        <div class="level-fill" style="width: 60%;"></div>
+                    </div>
+                    <span class="level-text">Intermediário // 60%</span>
+                </div>
+                <p class="lang-desc">Conversação diária, leitura básica, interesse contínuo na cultura e tecnologia japonesa.</p>
+            </div>
+
+            <!-- Mandarim -->
+            <div class="linguistic-card">
+                <div class="lang-header">
+                    <span class="lang-code">zh_CN</span>
+                    <span class="lang-name">Mandarim</span>
+                </div>
+                <div class="lang-level">
+                    <div class="level-bar">
+                        <div class="level-fill" style="width: 30%;"></div>
+                    </div>
+                    <span class="level-text">Iniciante // 30%</span>
+                </div>
+                <p class="lang-desc">Fundamentos do idioma, caracteres básicos, expanding global mindset.</p>
+            </div>
+        </div>
+
+        <div class="linguistic-footer">
+            <p class="mono">// Multilingual Data Engineer: Capaz de operar em ambientes globais</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="work" id="projects">
+        <div class="section-header">
+            <h2 class="section-title glitch-text" data-text="PROJETOS">PROJETOS</h2>
+            <p class="section-subtitle">Pipelines, análises e arquitetura de dados</p>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Projeto 1: Hackathon -->
+            <article class="project-card project-card--large">
+                <div class="project-image-wrapper">
+                    <img src="assets/images/projeto1-static.svg" alt="Hackathon End-to-End" class="project-image">
+                    <div class="project-overlay">
+                        <span class="view-project">Ver Projeto</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Hackathon End-to-End</h3>
+                    <p class="project-category">Software Developer</p>
+                    <div class="project-tags">
+                        <span class="project-tag">GCP</span>
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">Azure</span>
+                        <span class="project-tag">APIs RESTful</span>
+                    </div>
+                    <p class="project-desc">Deploy multi-cloud garantindo escalabilidade. APIs RESTful conectando serviços internos e terceiros.</p>
+                </div>
+            </article>
+
+            <!-- Projeto 2: Pipeline -->
+            <a href="https://github.com/naurk10/projeto-analise-vendas-pipeline" target="_blank" class="project-card project-card--medium">
+                <div class="project-image-wrapper">
+                    <img src="assets/images/projeto2-static.svg" alt="Pipeline de Vendas" class="project-image">
+                    <div class="project-overlay">
+                        <span class="view-project">GitHub →</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">projeto-analise-vendas-pipeline</h3>
+                    <p class="project-category">Python • ⭐ 1</p>
+                    <div class="project-tags">
+                        <span class="project-tag">ETL</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Pipeline</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Projeto 3: Hospital -->
+            <a href="https://github.com/naurk10/hospital_data_analysis" target="_blank" class="project-card project-card--small">
+                <div class="project-image-wrapper">
+                    <img src="assets/images/projeto3-static.svg" alt="Hospital Data Analysis" class="project-image">
+                    <div class="project-overlay">
+                        <span class="view-project">GitHub →</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">hospital_data_analysis</h3>
+                    <p class="project-category">Python</p>
+                    <div class="project-tags">
+                        <span class="project-tag">SQL</span>
+                        <span class="project-tag">Analytics</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Projeto 4: Análise Vendas -->
+            <a href="https://github.com/naurk10/analise-vendas-python" target="_blank" class="project-card project-card--medium">
+                <div class="project-image-wrapper">
+                    <img src="assets/images/projeto4-static.svg" alt="Análise Vendas Python" class="project-image">
+                    <div class="project-overlay">
+                        <span class="view-project">GitHub →</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">analise-vendas-python</h3>
+                    <p class="project-category">Jupyter Notebook</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Pandas</span>
+                        <span class="project-tag">Visualization</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Projeto 5: SUPREMO -->
+            <a href="https://github.com/naurk10/SUPREMO" target="_blank" class="project-card project-card--large">
+                <div class="project-image-wrapper">
+                    <img src="assets/images/projeto5-static.svg" alt="SUPREMO Java" class="project-image">
+                    <div class="project-overlay">
+                        <span class="view-project">GitHub →</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">SUPREMO</h3>
+                    <p class="project-category">Java</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Java</span>
+                        <span class="project-tag">Backend</span>
+                        <span class="project-tag">Architecture</span>
+                    </div>
+                    <p class="project-desc">Backend robusto, lógica de negócio complexa e arquitetura de software escalável.</p>
+                </div>
+            </a>
+
+            <!-- Projeto 6: Portfolio -->
+            <a href="https://github.com/naurk10/naurk10.github.io" target="_blank" class="project-card project-card--small">
+                <div class="project-image-wrapper">
+                    <img src="assets/images/projeto6-static.svg" alt="Portfolio GitHub" class="project-image">
+                    <div class="project-overlay">
+                        <span class="view-project">GitHub →</span>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">naurk10.github.io</h3>
+                    <p class="project-category">GitHub Pages</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Frontend</span>
+                        <span class="project-tag">HTML/CSS</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section - CORRIGIDO -->
+    <section class="contact" id="contact">
+        <!-- Background decorativo - z-index baixo -->
+        <div class="contact-bg-text">
+            <span>CLOUD_ARCHITECT</span>
+            <span>//</span>
+            <span>DATA_ENGINEER</span>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-header">
+                <h2 class="contact-title">CONTATO</h2>
+                <p class="contact-subtitle">
+                    Vamos construir pipelines que permanecem.<br>
+                    Open para oportunidades em Data Engineering e Cloud Architecture.
+                </p>
+            </div>
+            
+            <div class="contact-links">
+                <a href="mailto:gamerkakos@gmail.com" class="contact-link contact-link--email">
+                    <span class="link-label">Email</span>
+                    <span class="link-value">gamerkakos@gmail.com</span>
+                </a>
+                <a href="https://github.com/naurk10" target="_blank" class="contact-link">
+                    <span class="link-label">GitHub</span>
+                    <span class="link-value">github.com/naurk10</span>
+                </a>
+                <a href="https://www.linkedin.com/in/kauan-monteiro-140844227/" target="_blank" class="contact-link">
+                    <span class="link-label">LinkedIn</span>
+                    <span class="link-value">/in/kauan-monteiro-140844227</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2024 Kauan Monteiro. Data Engineer | Cloud Architect</p>
+            <p class="footer-credit">AEVUM — ERA. Construindo o que permanece.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

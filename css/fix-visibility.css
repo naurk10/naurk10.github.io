@@ -1,0 +1,228 @@
+/* ============================================
+   CORREÇÃO DE VISIBILIDADE - EMERGÊNCIA
+   ============================================ */
+
+/* GARANTIR QUE TODO CONTEÚDO SEJA VISÍVEL */
+
+/* Remover qualquer opacity: 0 que possa estar escondendo conteúdo */
+section,
+.section-header,
+.section-title,
+.section-subtitle,
+.project-card,
+.about-content,
+.about-text,
+.manifesto-block,
+.punchline,
+.aevum-cards,
+.aevum-card,
+.contact-content,
+.contact-header,
+.contact-links,
+.contact-link,
+.marquee-cyber,
+.projects-grid,
+.github-repo-card,
+.repo-name,
+.repo-lang,
+.manifesto-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Garantir que o body tenha cor de texto visível */
+body {
+    color: #FFFFFF !important;
+    background-color: #0A0A0A !important;
+}
+
+/* Garantir que todas as sections tenham posicionamento correto */
+section {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Garantir que o hero não cubra o resto */
+.hero {
+    position: relative !important;
+    min-height: 100vh !important;
+    z-index: 1 !important;
+}
+
+/* Garantir que work section seja visível */
+.work {
+    position: relative !important;
+    z-index: 2 !important;
+    background-color: #0A0A0A !important;
+}
+
+/* Garantir que about/manifesto seja visível */
+.about {
+    position: relative !important;
+    z-index: 2 !important;
+    background-color: #FFBE0B !important; /* Cor de fundo do Aevum */
+}
+
+/* Garantir que contact seja visível */
+.contact {
+    position: relative !important;
+    z-index: 2 !important;
+    background-color: #0A0A0A !important;
+}
+
+/* Garantir que textos dentro das sections sejam visíveis */
+.about .about-title,
+.about .title-word,
+.manifesto-block .manifesto-text,
+.punchline,
+.aevum-card .aevum-card-name,
+.aevum-card .aevum-card-handle,
+.aevum-card .aevum-card-skills,
+.github-repo-card .repo-name,
+.github-repo-card p {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garantir que o marquee cyber seja visível */
+.marquee-cyber {
+    background-color: #0D1117 !important;
+    border-top: 2px solid #00FF41 !important;
+    border-bottom: 2px solid #00FF41 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.marquee-cyber span {
+    color: #00FF41 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garantir que links de contato sejam visíveis */
+.contact-link {
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.contact-link .link-label,
+.contact-link .link-value {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
+/* Garantir que footer seja visível */
+.footer {
+    background-color: #0A0A0A !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer-text,
+.footer-credit {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
+/* REMOVER ANIMAÇÕES QUE POSSAM ESTAR CAUSANDO PROBLEMAS */
+[data-scroll] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Garantir que glitch text não fique invisível */
+.glitch-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Garantir que noise e scanlines não bloqueiem cliques */
+.noise-overlay,
+.scanlines {
+    pointer-events: none !important;
+    z-index: 9998 !important;
+}
+
+/* Garantir que o cursor personalizado não interfira */
+.custom-cursor {
+    z-index: 9999 !important;
+    pointer-events: none !important;
+}
+
+/* Garantir visibilidade do hero content */
+.hero-content {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Garantir que títulos sejam visíveis */
+.hero-title,
+.section-title,
+.contact-title,
+.about-title {
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: #FFFFFF !important;
+}
+
+/* Específico para o manifesto */
+.manifesto-block {
+    background-color: #0D1117 !important;
+    border-left: 4px solid #00FF41 !important;
+}
+
+.manifesto-text {
+    color: #E6EDF3 !important;
+}
+
+.manifesto-text .highlight {
+    color: #00FF41 !important;
+    background-color: rgba(0, 255, 65, 0.1) !important;
+}
+
+/* Específico para cards Aevum */
+.aevum-card {
+    background-color: #0D1117 !important;
+    border: 2px solid #00FF41 !important;
+}
+
+.aevum-card-handle {
+    color: #00FF41 !important;
+}
+
+.aevum-card-name {
+    color: #FFFFFF !important;
+}
+
+.aevum-card-skills span {
+    color: #00FF41 !important;
+    border-color: #00FF41 !important;
+    background-color: rgba(0, 255, 65, 0.1) !important;
+}
+
+/* Específico para GitHub repo cards */
+.github-repo-card {
+    background-color: #0D1117 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.github-repo-card .repo-name {
+    color: #00FFFF !important; /* ciano */
+}
+
+.github-repo-card .repo-lang {
+    color: #00FF41 !important;
+}
+
+/* Garantir que o marquee na seção de contato seja visível */
+.contact .marquee {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.contact .marquee-content span {
+    color: #FFFFFF !important;
+    opacity: 0.1 !important;
+}

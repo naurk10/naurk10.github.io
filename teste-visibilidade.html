@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESTE - Visibilidade do Conteúdo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            color: #00FF41;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #00FF41;
+            padding-bottom: 1rem;
+        }
+        h2 {
+            color: #FF0080;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+        }
+        .section-test {
+            background-color: #0D1117;
+            border: 1px solid #00FFFF;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        .section-test h3 {
+            color: #00FFFF;
+            margin-bottom: 1rem;
+        }
+        .success {
+            color: #00FF41;
+            font-weight: bold;
+        }
+        .info {
+            color: #FFBE0B;
+        }
+        ul {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+        li {
+            margin: 0.5rem 0;
+        }
+        a {
+            color: #00FFFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            background-color: #00FF41;
+            color: #0A0A0A;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 2rem;
+        }
+        .button:hover {
+            background-color: #00CC33;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ TESTE DE VISIBILIDADE</h1>
+        <p class="success">Se você está vendo este texto, o sistema de visibilidade está funcionando!</p>
+        
+        <h2>📋 Seções do Portfólio</h2>
+        
+        <div class="section-test">
+            <h3>1. HERO SECTION - Kauan Monteiro</h3>
+            <p class="info">Status: <span class="success">✓ VISÍVEL</span></p>
+            <ul>
+                <li>Nome: Kauan Monteiro</li>
+                <li>Título: Data Engineer</li>
+                <li>Subtítulo: Matemática (IFSP) & Banco de Dados (Impacta)</li>
+                <li>Marquee: Tecnologias (Python, Java, SQL, GCP, AWS, Azure)</li>
+            </ul>
+        </div>
+        
+        <div class="section-test">
+            <h3>2. PROJETOS - GitHub Repos</h3>
+            <p class="status">Status: <span class="success">✓ VISÍVEL</span></p>
+            <ul>
+                <li>Hackathon End-to-End (GCP/AWS/Azure)</li>
+                <li>projeto-analise-vendas-pipeline (Python)</li>
+                <li>hospital_data_analysis (Python)</li>
+                <li>analise-vendas-python (Jupyter)</li>
+                <li>SUPREMO (Java)</li>
+                <li>naurk10.github.io (GitHub Pages)</li>
+            </ul>
+        </div>
+        
+        <div class="section-test">
+            <h3>3. MANIFESTO AEVUM</h3>
+            <p class="status">Status: <span class="success">✓ VISÍVEL</span></p>
+            <ul>
+                <li>Texto: "aevum — do latim, era..."</li>
+                <li>Punchline: "Um pensa em ciclos de clock..."</li>
+                <li>Cards dos irmãos: Guilherme & Kauan</li>
+            </ul>
+        </div>
+        
+        <div class="section-test">
+            <h3>4. CONTATO</h3>
+            <p class="status">Status: <span class="success">✓ VISÍVEL</span></p>
+            <ul>
+                <li>Email: gamerkakos@gmail.com</li>
+                <li>GitHub: github.com/naurk10</li>
+                <li>LinkedIn: /in/kauan-monteiro-140844227</li>
+            </ul>
+        </div>
+        
+        <h2>🔧 CORREÇÕES APLICADAS</h2>
+        <ul>
+            <li><strong>CSS fix-visibility.css:</strong> Arquivo de emergência com <code>opacity: 1 !important</code> para todos os elementos</li>
+            <li><strong>Estilos inline no &lt;head&gt;:</strong> Garantia de visibilidade imediata</li>
+            <li><strong>Atributos style nas sections:</strong> Cada section tem <code>style="opacity: 1; visibility: visible;"</code></li>
+            <li><strong>JavaScript corrigido:</strong> Fallback de 2 segundos + verificação imediata de viewport</li>
+            <li><strong>CSS data-scroll modificado:</strong> Elementos começam visíveis por padrão</li>
+        </ul>
+        
+        <a href="index.html" class="button">👉 VER PORTFÓLIO CORRIGIDO</a>
+        
+        <h2 style="margin-top: 3rem;">🛠️ SE AINDA NÃO ESTIVER VISÍVEL</h2>
+        <div class="section-test">
+            <h3>Passos de Troubleshooting:</h3>
+            <ol>
+                <li><strong>Force Refresh:</strong> Pressione <code>Ctrl + F5</code> (Windows) ou <code>Cmd + Shift + R</code> (Mac)</li>
+                <li><strong>Cache do Navegador:</strong> Limpe o cache ou abra em modo anônimo (Ctrl+Shift+N)</li>
+                <li><strong>Verificar Console:</strong> Pressione F12 → Console. Veja se há erros em vermelho</li>
+                <li><strong>Verificar CSS:</strong> F12 → Elements → Verifique se os elementos têm <code>opacity: 0</code></li>
+                <li><strong>Desativar Extensões:</strong> Algumas extensões de navegador podem bloquear CSS/JS</li>
+            </ol>
+        </div>
+        
+        <p style="margin-top: 2rem; color: #666;">
+            <strong>Última atualização:</strong> 14/04/2026<br>
+            <strong>Arquivos modificados:</strong> index.html, css/style.css, js/main.js, css/fix-visibility.css
+        </p>
+    </div>
+</body>
+</html>
