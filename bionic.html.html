@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bionic Reading Converter</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --focus: #2563eb;
+      --button: #111827;
+      --buttonText: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 38vh;
+      resize: vertical;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    textarea:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .output-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #f9fafb;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 140px;
+    }
+
+    .toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    label.control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    select {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text);
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      flex: 1;
+    }
+
+    .output-title {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--button);
+      background: var(--button);
+      color: var(--buttonText);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    button.secondary:hover {
+      border-color: #d1d5db;
+      background: #f9fafb;
+      filter: none;
+    }
+
+    button:hover { filter: brightness(1.05); }
+    button:active { transform: translateY(1px); }
+
+    .hint {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    #output-bionic {
+      width: 100%;
+      min-height: 38vh;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: auto;
+      font-size: 15px;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    #output-bionic[data-contrast="none"] .bionic-bold {
+      font-weight: 600;
+      color: inherit;
+    }
+
+    #output-bionic[data-contrast="medium"] .bionic-bold {
+      font-weight: 800;
+      color: #0b1220;
+    }
+
+    #output-bionic[data-contrast="high"] .bionic-bold {
+      font-weight: 900;
+      color: #000000;
+    }
+
+    #fullscreen-content[data-contrast="none"] .bionic-bold {
+      font-weight: 600;
+      color: inherit;
+    }
+
+    #fullscreen-content[data-contrast="medium"] .bionic-bold {
+      font-weight: 800;
+      color: #0b1220;
+    }
+
+    #fullscreen-content[data-contrast="high"] .bionic-bold {
+      font-weight: 900;
+      color: #000000;
+    }
+
+    .info-content .bionic-bold {
+      font-weight: 600;
+      color: inherit;
+    }
+
+    #output-bionic:empty::before {
+      content: "O texto convertido aparecerá aqui...";
+      color: var(--muted);
+    }
+
+    details.info {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #f9fafb;
+      padding: 12px 14px;
+    }
+
+    details.info summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+      list-style: none;
+    }
+
+    details.info summary::-webkit-details-marker { display: none; }
+
+    details.info summary::after {
+      content: "▾";
+      float: right;
+      color: var(--muted);
+    }
+
+    details.info[open] summary::after { content: "▴"; }
+
+    .info-content {
+      margin-top: 10px;
+      color: var(--text);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .fullscreen {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      display: none;
+      z-index: 9999;
+    }
+
+    .fullscreen.open {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fullscreen-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: #f9fafb;
+    }
+
+    .fullscreen-title {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .fullscreen-content {
+      padding: 18px 16px;
+      overflow: auto;
+      flex: 1;
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      font-size: 19px;
+      line-height: 2.05;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Bionic Reading Converter</h1>
+      <p class="subtitle">Cole um texto, converta e leia com foco nos primeiros caracteres de cada palavra.</p>
+    </header>
+
+    <textarea id="input-text" placeholder="Cole seu texto aqui..."></textarea>
+
+    <div class="actions">
+      <button id="convert-btn" type="button">Converter para Bionic Reading</button>
+      <span class="hint">A conversão é reativa: ajuste Fixação/Contraste para atualizar.</span>
+    </div>
+
+    <div class="toolbar" aria-label="Ferramentas de compartilhamento">
+      <div class="toolbar-left">
+        <div class="toolbar-group" aria-label="Controles">
+          <div class="output-title">Resultado</div>
+          <label class="control">
+            Fixação
+            <select id="fixation-select">
+              <option value="0.40">Very Low (40%)</option>
+              <option value="0.45">Low (45%)</option>
+              <option value="0.50" selected>Medium (50%)</option>
+              <option value="0.55">High (55%)</option>
+              <option value="0.60">Very High (60%)</option>
+            </select>
+          </label>
+          <label class="control">
+            Contraste
+            <select id="contrast-select">
+              <option value="none" selected>Nenhum</option>
+              <option value="medium">Médio</option>
+              <option value="high">Alto</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="toolbar-actions">
+        <button id="copy-html-btn" class="secondary" type="button">Copiar</button>
+        <button id="copy-wpp-unicode-btn" class="secondary" type="button">Copiar para WhatsApp (Unicode)</button>
+        <button id="download-img-btn" class="secondary" type="button">Baixar como Imagem</button>
+        <button id="fullscreen-btn" class="secondary" type="button">Ler em Tela Cheia</button>
+      </div>
+    </div>
+
+    <div id="output-bionic" data-contrast="none" aria-live="polite"></div>
+
+    <details class="info">
+      <summary>Saiba mais sobre Leitura Biônica</summary>
+      <div id="info-bionic" class="info-content"></div>
+    </details>
+  </main>
+
+  <section id="fullscreen-overlay" class="fullscreen" aria-label="Leitura em tela cheia">
+    <div class="fullscreen-bar">
+      <div class="fullscreen-title">Leitura em Tela Cheia</div>
+      <button id="fullscreen-exit-btn" class="secondary" type="button">Sair</button>
+    </div>
+    <div id="fullscreen-content" class="fullscreen-content" data-contrast="none"></div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script>
+    function convertToBionicReading(text, fixationRatio) {
+      const words = text.split(' ');
+
+      const convertedWords = words.map((word) => {
+        if (word.length === 0) return '';
+
+        const boldCount = Math.max(1, Math.ceil(word.length * fixationRatio));
+        const firstPart = word.slice(0, boldCount);
+        const restPart = word.slice(boldCount);
+
+        return '<span class="bionic-bold">' + firstPart + '</span>' + restPart;
+      });
+
+      return convertedWords.join(' ');
+    }
+
+
+    function setTemporaryButtonState(btn, temporaryLabel) {
+      const original = btn.textContent;
+      btn.textContent = temporaryLabel;
+      btn.disabled = true;
+      window.setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+      }, 900);
+    }
+
+    function toUnicodeBoldSansSerif(text) {
+      const A = 'A'.charCodeAt(0);
+      const Z = 'Z'.charCodeAt(0);
+      const a = 'a'.charCodeAt(0);
+      const z = 'z'.charCodeAt(0);
+
+      const UPPER_BASE = 0x1D5D4; // 𝗔
+      const LOWER_BASE = 0x1D5EE; // 𝗮
+
+      let out = '';
+      for (let i = 0; i < text.length; i++) {
+        const code = text.charCodeAt(i);
+        if (code >= A && code <= Z) {
+          out += String.fromCodePoint(UPPER_BASE + (code - A));
+          continue;
+        }
+        if (code >= a && code <= z) {
+          out += String.fromCodePoint(LOWER_BASE + (code - a));
+          continue;
+        }
+        out += text[i];
+      }
+      return out;
+    }
+
+    function bionicHtmlToUnicodeBold(rootEl) {
+      const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null);
+
+      const parts = [];
+      let node;
+      while ((node = walker.nextNode())) {
+        const text = node.nodeValue || '';
+        if (text.length === 0) continue;
+
+        const parentEl = node.parentElement;
+        const isBold = !!(parentEl && parentEl.closest && parentEl.closest('.bionic-bold'));
+
+        parts.push(isBold ? toUnicodeBoldSansSerif(text) : text);
+      }
+
+      return parts.join('');
+    }
+
+    async function copyOutput() {
+      const html = outputEl.innerHTML;
+      const text = outputEl.innerText;
+
+      if (!text || text.trim().length === 0) return;
+
+      try {
+        if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+          const item = new ClipboardItem({
+            'text/plain': new Blob([text], { type: 'text/plain' }),
+            'text/html': new Blob([html], { type: 'text/html' })
+          });
+          await navigator.clipboard.write([item]);
+          return;
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+      } catch (_) {
+      }
+
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+
+    async function copyToWhatsAppUnicode() {
+      const text = bionicHtmlToUnicodeBold(outputEl).trim();
+      if (!text || text.trim().length === 0) return;
+      await navigator.clipboard.writeText(text);
+    }
+
+    async function downloadOutputAsImage() {
+      if (!outputEl.innerText || outputEl.innerText.trim().length === 0) return;
+      if (typeof window.html2canvas !== 'function') return;
+
+      const canvas = await window.html2canvas(outputEl, {
+        backgroundColor: '#ffffff',
+        scale: Math.max(2, window.devicePixelRatio || 1)
+      });
+
+      const link = document.createElement('a');
+      link.download = 'bionic-reading.png';
+      link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    const inputEl = document.getElementById('input-text');
+    const outputEl = document.getElementById('output-bionic');
+    const buttonEl = document.getElementById('convert-btn');
+    const fixationSelectEl = document.getElementById('fixation-select');
+    const contrastSelectEl = document.getElementById('contrast-select');
+    const copyHtmlBtnEl = document.getElementById('copy-html-btn');
+    const copyWppUnicodeBtnEl = document.getElementById('copy-wpp-unicode-btn');
+    const downloadImgBtnEl = document.getElementById('download-img-btn');
+    const fullscreenBtnEl = document.getElementById('fullscreen-btn');
+    const fullscreenOverlayEl = document.getElementById('fullscreen-overlay');
+    const fullscreenExitBtnEl = document.getElementById('fullscreen-exit-btn');
+    const fullscreenContentEl = document.getElementById('fullscreen-content');
+    const infoEl = document.getElementById('info-bionic');
+
+    function getFixationRatio() {
+      const v = parseFloat(fixationSelectEl.value);
+      return Number.isFinite(v) ? v : 0.5;
+    }
+
+    function getContrast() {
+      const v = contrastSelectEl.value;
+      if (v === 'medium' || v === 'high') return v;
+      return 'none';
+    }
+
+    function applyContrast(contrast) {
+      outputEl.dataset.contrast = contrast;
+      fullscreenContentEl.dataset.contrast = contrast;
+    }
+
+    function render() {
+      const rawText = inputEl.value;
+      const fixation = getFixationRatio();
+      const contrast = getContrast();
+      applyContrast(contrast);
+      outputEl.innerHTML = convertToBionicReading(rawText, fixation);
+      if (fullscreenOverlayEl.classList.contains('open')) {
+        fullscreenContentEl.innerHTML = outputEl.innerHTML;
+      }
+    }
+
+    buttonEl.addEventListener('click', () => {
+      render();
+    });
+
+    inputEl.addEventListener('input', () => {
+      render();
+    });
+
+    fixationSelectEl.addEventListener('change', () => {
+      render();
+    });
+
+    contrastSelectEl.addEventListener('change', () => {
+      render();
+    });
+
+    copyHtmlBtnEl.addEventListener('click', async () => {
+      await copyOutput();
+      setTemporaryButtonState(copyHtmlBtnEl, '✓ Copiado!');
+    });
+
+    copyWppUnicodeBtnEl.addEventListener('click', async () => {
+      await copyToWhatsAppUnicode();
+      setTemporaryButtonState(copyWppUnicodeBtnEl, '✓ Copiado!');
+    });
+
+    downloadImgBtnEl.addEventListener('click', async () => {
+      await downloadOutputAsImage();
+      setTemporaryButtonState(downloadImgBtnEl, '✓ Baixado!');
+    });
+
+    function openFullscreen() {
+      fullscreenContentEl.innerHTML = outputEl.innerHTML;
+      fullscreenOverlayEl.classList.add('open');
+    }
+
+    function closeFullscreen() {
+      fullscreenOverlayEl.classList.remove('open');
+    }
+
+    fullscreenBtnEl.addEventListener('click', () => {
+      openFullscreen();
+    });
+
+    fullscreenExitBtnEl.addEventListener('click', () => {
+      closeFullscreen();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeFullscreen();
+      }
+    });
+
+    const infoText =
+      'Leitura Biônica é uma técnica que destaca o início de cada palavra para criar pontos de fixação visual. ' +
+      'Esses pontos ajudam o olhar a percorrer as linhas com mais estabilidade, reduzindo o esforço para reconhecer cada palavra. ' +
+      'Na prática, você mantém a compreensão, mas ganha foco e pode aumentar a velocidade de leitura. ' +
+      'Muitas pessoas também relatam benefício como apoio em casos de TDAH e Dislexia, por facilitar a manutenção da atenção e o acompanhamento do texto.';
+    infoEl.innerHTML = convertToBionicReading(infoText, 0.5);
+    render();
+  </script>
+</body>
+</html>

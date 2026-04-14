@@ -816,10 +816,33 @@ section, div, p, h1, h2, h3, span, a {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
+}
+
+/* Layout alternativo para destacar projetos principais */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: minmax(280px, auto);
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Cards grandes ocupam mais espaço */
+.project-card--large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+@media (max-width: 1024px) {
+    .project-card--large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
 }
 
 .project-card {
@@ -829,19 +852,13 @@ section, div, p, h1, h2, h3, span, a {
     text-decoration: none;
     color: var(--text-light);
     display: block;
+    min-height: 280px;
 }
 
-.project-card--large {
-    grid-column: span 6;
-    grid-row: span 2;
-}
-
-.project-card--medium {
-    grid-column: span 4;
-}
-
+.project-card--medium,
 .project-card--small {
-    grid-column: span 3;
+    /* Classes mantidas para compatibilidade - tamanho padrão */
+    min-height: 280px;
 }
 
 .project-image-wrapper {
