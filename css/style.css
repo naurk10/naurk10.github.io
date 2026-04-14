@@ -1162,6 +1162,282 @@ section, div, p, h1, h2, h3, span, a {
 }
 
 /* ============================================
+   FEATURED PROJECT - BIONIC READING DESTAQUE
+   ============================================ */
+
+.featured-project {
+    padding: 6rem 2rem 4rem;
+    background: var(--bg-1);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* Efeito de fundo brilhante */
+.featured-project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 30% 50%, rgba(0, 255, 65, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 50%, rgba(255, 0, 128, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Badge de destaque */
+.featured-badge {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyber-neon);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.badge-pulse {
+    animation: pulse 1.5s infinite;
+    color: var(--cyber-neon);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Container principal */
+.featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    align-items: center;
+}
+
+/* Texto do destaque */
+.featured-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.featured-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--text-light);
+    line-height: 1.2;
+}
+
+.featured-desc {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.featured-desc strong {
+    color: var(--cyber-neon);
+    font-weight: 700;
+}
+
+/* Tags */
+.featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.featured-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyber-neon);
+    border: 1px solid var(--cyber-neon);
+    padding: 0.5rem 1rem;
+    background: rgba(0, 255, 65, 0.05);
+}
+
+.featured-tag.highlight {
+    background: var(--cyber-neon);
+    color: var(--bg-1);
+    font-weight: 700;
+}
+
+/* Botão CTA */
+.featured-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--bg-1);
+    background: var(--cyber-neon);
+    padding: 1.25rem 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 2px solid var(--cyber-neon);
+    transition: all var(--transition-fast);
+    margin-top: 1rem;
+    width: fit-content;
+}
+
+.featured-cta:hover {
+    background: transparent;
+    color: var(--cyber-neon);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+}
+
+/* Visual do destaque */
+.featured-visual {
+    position: relative;
+    text-decoration: none;
+    display: block;
+}
+
+.featured-image-wrapper {
+    position: relative;
+    border: 2px solid var(--cyber-neon);
+    padding: 1rem;
+    background: var(--bg-2);
+    /* Efeito de borda neon pulsante */
+    animation: neon-pulse 2s infinite;
+}
+
+@keyframes neon-pulse {
+    0%, 100% { 
+        box-shadow: 
+            0 0 10px rgba(0, 255, 65, 0.3),
+            0 0 20px rgba(0, 255, 65, 0.2),
+            0 0 30px rgba(0, 255, 65, 0.1);
+    }
+    50% { 
+        box-shadow: 
+            0 0 20px rgba(0, 255, 65, 0.5),
+            0 0 40px rgba(0, 255, 65, 0.3),
+            0 0 60px rgba(0, 255, 65, 0.2);
+    }
+}
+
+.featured-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+    background: var(--bg-3);
+}
+
+/* Glow de fundo */
+.featured-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle, rgba(0, 255, 65, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: glow-rotate 8s linear infinite;
+}
+
+@keyframes glow-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Preview de texto */
+.featured-preview-text {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-2);
+    border: 1px solid var(--cyber-neon);
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.featured-preview-text .normal {
+    color: var(--text-muted);
+}
+
+.featured-preview-text .bionic {
+    color: var(--cyber-neon);
+}
+
+.featured-preview-text .bionic b {
+    color: var(--text-light);
+    font-weight: 700;
+}
+
+/* Responsividade do Featured */
+@media (max-width: 1024px) {
+    .featured-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .featured-visual {
+        order: -1;
+        max-width: 600px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    
+    .featured-project {
+        padding: 4rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .featured-title {
+        font-size: 1.75rem;
+    }
+    
+    .featured-desc {
+        font-size: 1rem;
+    }
+    
+    .featured-cta {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.875rem;
+        padding: 1rem 1.5rem;
+    }
+    
+    .featured-preview-text {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        bottom: -20px;
+    }
+    
+    .featured-glow {
+        display: none;
+    }
+}
+
+/* ============================================
    UTILITÁRIOS
    ============================================ */
 
